@@ -1,0 +1,27 @@
+services:
+  pgdatabase:
+    container_name: postgres_container
+    image: postgres:14.17
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=sf_311_calls_db 
+    volumes:
+      - "./data/sf_311_calls_db:/var/lib/postgresql/data:rw"
+    ports:
+      - "5400:5432"
+    networks:
+      - pg-network
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - "8080:80"
+    networks:
+      - pg-network
+networks:
+  pg-network:
+    driver: bridge
