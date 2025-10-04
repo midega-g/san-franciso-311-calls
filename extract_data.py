@@ -11,7 +11,7 @@ def sample_api_data():
     query = """
     SELECT * 
     WHERE requested_datetime  > "2025-01-01T00:00:00.000"
-    LIMIT 10
+    LIMIT 45
     """
 
     results = client.get("vw6y-z8j6", query=query)
