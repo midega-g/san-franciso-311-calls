@@ -22,6 +22,7 @@ def create_table(conn):
         cursor = conn.cursor()
         cursor.execute(
             """
+            CREATE EXTENSION IF NOT EXISTS postgis;
             CREATE SCHEMA IF NOT EXISTS bronze;
             CREATE TABLE IF NOT EXISTS bronze.sf_311_calls (
                 service_request_id               TEXT PRIMARY KEY,
@@ -48,6 +49,7 @@ def create_table(conn):
                 media_url                        TEXT,
                 bos_2012                         TEXT,
                 data_as_of                       TEXT,
+                data_loaded_at                   TEXT,
                 inserted_at                      TIMESTAMPTZ DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'Africa/Nairobi')
             );
             """
@@ -81,7 +83,8 @@ def insert_data(conn, data):
         status_description, status_notes, agency_responsible, service_name,
         service_subtype, service_details, address, street, supervisor_district,
         neighborhoods_sffind_boundaries, analysis_neighborhood, police_district,
-        lat, long, point, point_geom, source, media_url, bos_2012, data_as_of
+        lat, long, point, point_geom, source, media_url, bos_2012, data_as_of,
+        data_loaded_at
     ) VALUES %s
     ON CONFLICT (service_request_id) DO NOTHING
     """
@@ -96,7 +99,7 @@ def insert_data(conn, data):
                 'service_subtype', 'service_details', 'address', 'street', 'supervisor_district',
                 'neighborhoods_sffind_boundaries', 'analysis_neighborhood', 'police_district',
                 'lat', 'long', 'point', 'point_geom', 'source', 'media_url', 'bos_2012',
-                'data_as_of'
+                'data_as_of', 'data_loaded_at'
             ])
             arg_list.append(args)
         
