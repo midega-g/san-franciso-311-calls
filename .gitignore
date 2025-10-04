@@ -13,3 +13,7 @@ todo.md
 311_Cases.csv
 sf_311_calls_db/
 scribble.py
+
+# ignore dbt folder
+etl_pipeline/
+logs/
