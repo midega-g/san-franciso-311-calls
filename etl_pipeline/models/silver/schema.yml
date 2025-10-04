@@ -1,0 +1,103 @@
+version: 2
+
+models:
+  - name: silver_sf_311
+    description: Cleaned and typed SF 311 requests, ready for business use.
+    columns:
+      - name: case_id
+        description: "{{ doc('case_id') }}"
+        tests:
+          - unique
+          - not_null
+      
+      - name: opened
+        description: "{{ doc('opened') }}"
+        tests:
+          - not_null
+      
+      - name: closed
+        description: "{{ doc('closed') }}"
+      
+      - name: updated
+        description: "{{ doc('updated') }}"
+      
+      - name: status
+        description: "{{ doc('status') }}"
+        tests:
+          - accepted_values:
+              config:
+                severity: warn
+              arguments:
+                values: ['Open', 'Closed']
+      
+      - name: status_notes
+        description: "{{ doc('status_notes') }}"
+      
+      - name: responsible_agency
+        description: "{{ doc('responsible_agency') }}"
+      
+      - name: service_name
+        description: "{{ doc('service_name') }}"
+        tests:
+          - not_null
+      
+      - name: service_subtype
+        description: "{{ doc('service_subtype') }}"
+      
+      - name: service_details
+        description: "{{ doc('service_details') }}"
+      
+      - name: address
+        description: "{{ doc('address') }}"
+      
+      - name: street
+        description: "{{ doc('street') }}"
+      
+      - name: supervisor_district
+        description: "{{ doc('supervisor_district') }}"
+      
+      - name: neighborhood
+        description: "{{ doc('neighborhood') }}"
+      
+      - name: analysis_neighborhood
+        description: "{{ doc('analysis_neighborhood') }}"
+      
+      - name: police_district
+        description: "{{ doc('police_district') }}"
+      
+      - name: latitude
+        description: "{{ doc('latitude') }}"
+        tests:
+          - valid_latitude
+      
+      - name: longitude
+        description: "{{ doc('longitude') }}"
+        tests:
+          - valid_longitude
+      
+      - name: point_geom
+        description: "{{ doc('point_geom') }}"
+        tests:
+          - valid_geometry
+      
+      - name: source_channel
+        description: "{{ doc('source_channel') }}"
+      
+      - name: media_url
+        description: "{{ doc('media_url') }}"
+      
+      - name: supervisor_district_2012
+        description: "{{ doc('supervisor_district_2012') }}"
+      
+      - name: data_as_of
+        description: "{{ doc('data_as_of') }}"
+      
+      - name: data_loaded_at
+        description: "{{ doc('data_loaded_at') }}"
+        tests:
+          - not_null
+      
+      - name: response_time_hours
+        description: "{{ doc('response_time_hours') }}"
+        tests:
+        - valid_response_time

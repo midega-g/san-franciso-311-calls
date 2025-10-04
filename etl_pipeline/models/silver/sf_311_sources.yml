@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: bronze_source
+    database: sf_311_calls_db
+    schema: bronze
+    tables:
+      - name: sf_311_calls
+        description: Raw SF 311 service requests from API/CSV ingestion.
+        columns:
+          - name: service_request_id
+            description: Unique ID of the service request.
+            tests:
+              - unique
+              - not_null
+          - name: requested_datetime
+            tests:
+              - not_null
+          - name: data_as_of
+            description: Timestamp when row was last updated in source.
