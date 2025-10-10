@@ -10,8 +10,8 @@ def sample_api_data():
     # Filter by date directly in the API query using SoQL
     query = """
     SELECT * 
-    WHERE requested_datetime  > "2025-01-01T00:00:00.000"
-    LIMIT 45
+    WHERE requested_datetime  > "2025-09-29T00:00:00.000"
+    LIMIT 100
     """
 
     results = client.get("vw6y-z8j6", query=query)
