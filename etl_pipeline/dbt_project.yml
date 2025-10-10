@@ -34,7 +34,7 @@ models:
       +incremental_strategy: delete+insert
       +on_configuration_change: fail
       +tags: ["silver", "intermediate"]
-    # gold:
-    #   +schema: gold
-    #   +materialized: view
-    #   +tags: ["gold", "mart"]
+    gold:
+      +schema: gold
+      +materialized: view
+      +tags: ["gold", "mart"]
