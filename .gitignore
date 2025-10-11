@@ -9,6 +9,9 @@ wheels/
 # Virtual environments
 .venv
 
+# Environment variables (secrets)
+.env
+
 todo.md
 311_Cases.csv
 sf_311_calls_db/
